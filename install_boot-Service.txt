@@ -28,8 +28,8 @@ After=network-online.target
 [Service]
 Type=forking
 GuessMainPID=no
-ExecStart=/home/pi/Tango_Devices/AgilisAGP/device_wrapper.sh
-WorkingDirectory=/home/pi/Tango_Devices/AgilisAGP
+ExecStart=/home/pi/Tango_Devices/AgilisAGAP/device_wrapper.sh
+WorkingDirectory=/home/pi/Tango_Devices/AgilisAGAP
 User=pi
 Restart=on-abort
 StandardOutput=journal
@@ -39,32 +39,22 @@ StandardError=journal
 WantedBy=multi-user.target
 ****
 
-$ sudo chmod +x  tango_dev.service
+$ sudo chmod +x  tango_agap.service
 
 Immer nach dem Aendern eines systemd-Files ausfuehren:
  
 $ sudo systemctl daemon-reload 
-$ sudo systemctl start tango_dev.service
-$ ps -edf
-..
-pi        5226     1  2 15:14 ?        00:00:01 /usr/bin/python /home/pi/Tango_Devices/MCC2/PySerialDS.py Lab
-pi        5229     1  2 15:14 ?        00:00:01 /usr/bin/python /home/pi/Tango_Devices/MCC2/PhytronMcc2.py Lab
-..
-
-Ok, die Prozesse laufen!
+$ sudo systemctl start tango_agap.service
 
 Und stoppen:
 
-$ sudo systemctl stop tango_dev.service
-$ ps -edf
-..
-..
-Weg sind sie!
+$ sudo systemctl stop tango_agap.service
+
 
 Jetzt bootfest machen:
 
-$ sudo systemctl enable tango_dev.service
-Created symlink /etc/systemd/system/multi-user.target.wants/tango_dev.service → /etc/systemd/system/tango_dev.service.
+$ sudo systemctl enable tango_agap.service
+Created symlink /etc/systemd/system/multi-user.target.wants/tango_agap.service → /etc/systemd/system/tango_agap.service.
 
 
 

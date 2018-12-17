@@ -10,10 +10,6 @@ Server (Servername/Instance) : AgilisAGAP/hhg
 Class: AgilisAGAP
 Device: hhg/AgilisAGAP/Ctrl1
 
-"Register Server"
-
-Ctrl1: SMC mit der Adresse 1 
-
 
 1.2. Konfiguration
 -------------------

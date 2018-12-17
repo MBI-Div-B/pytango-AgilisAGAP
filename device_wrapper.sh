@@ -1,18 +1,18 @@
 #!/bin/bash
 
-# 5.12.2018
-# Wrapper zum Starten von AgilisAGP.py 
+# 17.12.2018
+# Wrapper zum Starten von AgilisAGAP.py 
 
 # Exportieren der Variable TANGO_HOST fuer die Bash-Shell
 
-#export TANGO_HOST=angstrom.hhg.lab:10000
-export TANGO_HOST=10.6.16.78:10000
+export TANGO_HOST=angstrom.hhg.lab:10000
+#export TANGO_HOST=10.6.16.78:10000
 
-#TANGOHOST=angstrom.hhg.lab
-TANGOHOST=10.6.16.78
+TANGOHOST=angstrom.hhg.lab
+#TANGOHOST=10.6.16.78
 
 #Umleiten der Ausgabe in eine Log-Datei
-exec &>> /home/pi/Tango_Devices/Agilis_Conex_AGP/device.log
+exec &>> /home/pi/Tango_Devices/Agilis_Conex_AGAP/device.log
 
 echo "---------------------------"
 echo $(date)
@@ -30,7 +30,7 @@ echo "starting AgilisAGP device"
 
 # Fork/exec
 (
-  exec /usr/bin/python /home/pi/Tango_Devices/Agilis_Conex_AGP/AgilisAGP.py hhg &
+  exec /usr/bin/python /home/pi/Tango_Devices/Agilis_Conex_AGAP/AgilisAGAP.py hhg &
 ) 
-&>> /home/pi/Tango_Devices/Agilis_Conex_AGP/device.log 
+&>> /home/pi/Tango_Devices/Agilis_Conex_AGAP/device.log 
 

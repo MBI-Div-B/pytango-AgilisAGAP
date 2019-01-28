@@ -84,7 +84,7 @@ class  AgilisAGAP(Device):
     __AGAP_state    = ''
     __error        = ''
     
-# private status variables, are are updated by "get_smc__state()"
+# private status variables, updated by "get_smc__state()"
     __Motor_Run   = False
     __Ready       = False
     __Out_Of_Limit= False
@@ -241,7 +241,9 @@ class  AgilisAGAP(Device):
         if tmp in self.__ERROR_OUT_OF_RANGE:
             self.__Out_Of_Limits = True
         else:
-            self.__Out_Of_Limits = False    
+            self.__Out_Of_Limits = False
+            self.__Motor_Run = True
+            
         # PROTECTED REGION END #    //  AgilisAGAP.position_write
     
     def write_position_y(self, value):

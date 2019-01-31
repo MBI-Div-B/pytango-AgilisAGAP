@@ -64,7 +64,7 @@ class  AgilisAGAP(Device):
 
 
 # time to wait after sending a command.
-    COMMAND_WAIT_TIME_SEC = 0.06
+    COMMAND_WAIT_TIME_SEC = 0.05  # 0.06
 
 # Errors from page 64 of the manual
     __ERROR_NEG_END_OF_RUN = 1
@@ -303,12 +303,16 @@ class  AgilisAGAP(Device):
     
     
     @command (
-    dtype_out=str, polling_period= 100, doc_out='state of AgilisAGAP' ) 
+    dtype_out=str, polling_period= 200, doc_out='state of AgilisAGAP' ) 
     @DebugIt()
     def get_AGAP_state(self):
         # PROTECTED REGION ID(AgilisAGAP.get_AGAP_state) ENABLED START #
         self.get_position(self.__AXIS_X)
+        # sleep eingebaut 
+        sleep(COMMAND_WAIT_TIME_SEC)
         self.get_position(self.__AXIS_Y)
+        # sleep eingebaut 
+        sleep(COMMAND_WAIT_TIME_SEC)
         resp = ''
         resp = self.write_read('TS?')
         if (resp != ''):

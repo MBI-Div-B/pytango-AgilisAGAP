@@ -1,15 +1,9 @@
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 #
-# This file is part of the  project
-#
-#
-#
-# Distributed under the terms of the GPL license.
-# See LICENSE.txt for more info.
-
-""" Tangodevice AgilisAGAP
-
-"""
+# Copyright (C) DATE  MBI-Division-B
+# MIT License, refer to LICENSE file
+# Author: / Email: (please set DATE above to year)
 
 __all__ = ["AgilisAGAP", "main"]
 
@@ -32,7 +26,9 @@ flagDebugIO = 0
 
 
 class  AgilisAGAP(Device):
-    """
+    """ 
+    Tangodevice AgilisAGAP
+
     """
     __metaclass__ = DeviceMeta
     # PROTECTED REGION ID(AgilisAGAP.class_variable) ENABLED START #

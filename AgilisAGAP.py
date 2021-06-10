@@ -167,9 +167,9 @@ class  AgilisAGAP(Device):
         
         
         if flagDebugIO:
-            print "Run: ",self.__Motor_Run
-            print "Postion_X: ", self.__Pos_X    
-            print "Postion_Y: ", self.__Pos_Y    
+            print ("Run: ",self.__Motor_Run)
+            print ("Postion_X: ", self.__Pos_X)
+            print ("Postion_Y: ", self.__Pos_Y)  
             
         # PROTECTED REGION END #    //  AgilisAGAP.init_device
 
@@ -190,7 +190,7 @@ class  AgilisAGAP(Device):
         # PROTECTED REGION ID(AgilisAGAP.send_cmd) ENABLED START #
         snd_str = cmd + self.__EOL
         self.__ser_port.flushOutput()
-        self.__ser_port.write(snd_str)
+        self.__ser_port.write(snd_str.encode('utf-8'))
         self.__ser_port.flush()
         # PROTECTED REGION END #    //  AgilisAGAP.send_cmd    
 
@@ -277,7 +277,7 @@ class  AgilisAGAP(Device):
             send_str = self.__AGAPID + argin
             self.__ser_port.flushInput()
             self.send_cmd(send_str)
-            tmp_answer = self.__ser_port.readline()
+            tmp_answer = self.__ser_port.readline().decode('utf-8')
             if tmp_answer.startswith(prefix):
                 answer = tmp_answer[len(prefix):]
             else:

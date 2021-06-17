@@ -115,12 +115,12 @@ class  AgilisAGAP(Device):
             self.set_state(DevState.MOVING)
         
     @command
-    def stop_motion(self):
-        self.send_cmd('ST')
+    def Stop(self):
+        self.query('ST')
         
     @command()    
-    def reset(self):
-        self.send_cmd('RS')
+    def Reset(self):
+        self.query('RS')
 
     def query(self, cmd):
         prefix = str(self.Address) + cmd[:-1]

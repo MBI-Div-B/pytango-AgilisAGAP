@@ -108,7 +108,7 @@ class  AgilisAGAP(Device):
         err = self.get_cmd_error_string()
         if err in self.__ERROR_OUT_OF_RANGE:
             self.set_state(DevState.ON)
-            Except.throw_exception('y position out of range')
+            Except.throw_exception('y position out of range', '', 'write_position_y')
         else:
             self.set_state(DevState.MOVING)
         

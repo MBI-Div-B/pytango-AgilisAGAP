@@ -1,6 +1,6 @@
 #!/usr/bin/python3 -u
 # -*- coding: utf-8 -*-
-from tango import AttrWriteType, DevState, DispLevel, DevFloat
+from tango import AttrWriteType, DevState, DispLevel, DevFloat, Except, DevError
 from tango.server import Device, attribute, command, device_property
 from time import sleep
 import serial
@@ -108,6 +108,9 @@ class  AgilisAGAP(Device):
         err = self.get_cmd_error_string()
         if err in self.__ERROR_OUT_OF_RANGE:
             self.set_state(DevState.ON)
+            err = DevError()
+            err.reason('out of limits')
+            Except.throw_exception(err)
             self.set_status('y position out of range')
         else:
             self.set_state(DevState.MOVING)

@@ -114,7 +114,7 @@ class  AgilisAGAP(Device):
         
     @command
     def stop_motion(self):
-        self.write_read('ST')
+        self.send_cmd('ST')
         
     @command()    
     def reset(self):
@@ -138,7 +138,7 @@ class  AgilisAGAP(Device):
         self.serial.flush()                  
 
     def get_cmd_error_string(self):
-        error = self.write_read('TE?')
+        error = self.query('TE?')
         return error.strip()
 
 

@@ -1,12 +1,18 @@
-#!/usr/bin/python3 -u
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+
+
+# Copyright (C) 2020  MBI-Division-B
+# MIT License, refer to LICENSE file
+# Author: Luca Barbera / Email: barbera@mbi-berlin.de
+
 from tango import AttrWriteType, DevState, DispLevel, DevFloat, Except, DevError
 from tango.server import Device, attribute, command, device_property
 from time import sleep
 import serial
 
 
-class  AgilisAGAP(Device):
+class AgilisAGAP(Device):
 
     Address = device_property(
         dtype='int16',
@@ -22,25 +28,25 @@ class  AgilisAGAP(Device):
 # Errors from page 64 of the manual
     __ERROR_NEG_END_OF_RUN = 1
     __ERROR_POS_END_OF_RUN = 2
-    __ERROR_OUT_OF_RANGE   = ('G', 'C')
+    __ERROR_OUT_OF_RANGE = ('G', 'C')
 
 # States from page 65 of the manual
-    __STATE_READY   = ('32', '33', '34', '35', '36')
-    __STATE_MOVING  = ('28', '29')
+    __STATE_READY = ('32', '33', '34', '35', '36')
+    __STATE_MOVING = ('28', '29')
     
     position_x = attribute(
         label='Position X',
         dtype='float',
         access=AttrWriteType.READ_WRITE,
         format="%4.3f",
-        doc = 'absolute position X'
+        doc='absolute position X'
     )
     position_y = attribute(
         label='Position Y',
         dtype='float',
         access=AttrWriteType.READ_WRITE,
         format="%4.3f",
-        doc = 'absolute position Y'
+        doc='absolute position Y'
     )
 
     def init_device(self):
@@ -50,13 +56,13 @@ class  AgilisAGAP(Device):
         try:
             self.info_stream("Connecting to AgilisAGAP on port: {:s} ...".format(self.Port))
             self.serial = serial.Serial(
-                port = self.Port,
-                baudrate = 921600,
-                bytesize = 8,
-                stopbits = 1,
-                parity = 'N',
-                xonxoff = True,
-                timeout = 0.05)
+                port=self.Port,
+                baudrate=921600,
+                bytesize=8,
+                stopbits=1,
+                parity='N',
+                xonxoff=True,
+                timeout=0.05)
             if self.serial.isOpen():
                 self.serial.close()
             self.serial.open()
@@ -96,8 +102,8 @@ class  AgilisAGAP(Device):
         err = self.get_cmd_error_string()
         if err in self.__ERROR_OUT_OF_RANGE:
             Except.throw_exception('x position out of range',
-                'x position out of range',
-                'write_position_x')
+                                   'x position out of range',
+                                   'write_position_x')
         else:
             self.set_state(DevState.MOVING)  
 
@@ -109,8 +115,8 @@ class  AgilisAGAP(Device):
         err = self.get_cmd_error_string()
         if err in self.__ERROR_OUT_OF_RANGE:
             Except.throw_exception('y position out of range',
-                'y position out of range',
-                'write_position_y')
+                                   'y position out of range',
+                                   'write_position_y')
         else:
             self.set_state(DevState.MOVING)
         
@@ -127,9 +133,9 @@ class  AgilisAGAP(Device):
         self.send_cmd(cmd)
         answer = self.serial.readline().decode('utf-8')
         if answer.startswith(prefix):
-           answer = answer[len(prefix):].strip()
+            answer = answer[len(prefix):].strip()
         else:
-           answer = ''
+            answer = ''
         return answer
     
     def send_cmd(self, cmd):

@@ -4,7 +4,6 @@
 
 # Copyright (C) 2020  MBI-Division-B
 # MIT License, refer to LICENSE file
-# Author: Luca Barbera / Email: barbera@mbi-berlin.de
 
 from tango import AttrWriteType, DevState, DispLevel, DevFloat, Except, DevError
 from tango.server import Device, attribute, command, device_property

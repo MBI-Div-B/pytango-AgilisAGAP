@@ -3,7 +3,7 @@
   <classes name="AgilisAGAP" pogoRevision="9.6">
     <description description="" title="AgilisAGAP" sourcePath="" language="PythonHL" filestogenerate="XMI   file,Code files,Protected Regions" license="GPL" copyright="" hasMandatoryProperty="false" hasConcreteProperty="false" hasAbstractCommand="false" hasAbstractAttribute="false">
       <inheritances classname="Device_Impl" sourcePath=""/>
-      <identification contact="MBI Berlin" author="-" emailDomain="tango@mbi-berlin.de" classFamily="OtherInstruments" siteSpecific="" platform="All Platforms" bus="" manufacturer="" reference=""/>
+      <identification contact="MBI Berlin" author="Daniel Schick" emailDomain="tango@mbi-berlin.de" classFamily="OtherInstruments" siteSpecific="" platform="All Platforms" bus="" manufacturer="" reference=""/>
     </description>
     <deviceProperties name="Address" description="NoneNone">
       <type xsi:type="pogoDsl:IntType"/>
